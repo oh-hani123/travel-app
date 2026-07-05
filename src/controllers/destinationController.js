@@ -1,6 +1,5 @@
 const pool = require('../config/db');
 
-
 const getDestinations = async (req, res) => {
   try {
     const result = await pool.query(
@@ -13,9 +12,13 @@ const getDestinations = async (req, res) => {
   }
 };
 
-
 const addDestination = async (req, res) => {
   const { name, country, notes, rating } = req.body;
+
+  if (!name || !country) {
+    return res.status(400).json({ message: 'Name and country are required' });
+  }
+
   try {
     const result = await pool.query(
       'INSERT INTO destinations (user_id, name, country, notes, rating) VALUES ($1, $2, $3, $4, $5) RETURNING *',
@@ -26,7 +29,6 @@ const addDestination = async (req, res) => {
     res.status(500).json({ message: 'Error adding destination', error: err.message });
   }
 };
-
 
 const updateDestination = async (req, res) => {
   const { id } = req.params;
@@ -44,7 +46,6 @@ const updateDestination = async (req, res) => {
     res.status(500).json({ message: 'Error updating destination', error: err.message });
   }
 };
-
 
 const deleteDestination = async (req, res) => {
   const { id } = req.params;
