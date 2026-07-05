@@ -78,35 +78,57 @@ function Dashboard() {
   };
 
   return (
-    <div>
-      <h2>My Travel Bucket List</h2>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="dashboard">
+      <div className="header">
+        <h2>My Travel Bucket List</h2>
+        <button onClick={handleLogout} className="btn-danger">Logout</button>
+      </div>
 
-      <form onSubmit={addDestination}>
+      <div className="container" style={{margin: '0 0 30px 0', maxWidth: '100%'}}>
         <h3>Add New Destination</h3>
-        <input type="text" placeholder="Destination name" value={name} onChange={(e) => setName(e.target.value)} />
-        <br />
-        <input type="text" placeholder="Country" value={country} onChange={(e) => setCountry(e.target.value)} />
-        <br />
-        <input type="text" placeholder="Notes" value={notes} onChange={(e) => setNotes(e.target.value)} />
-        <br />
-        <input type="number" placeholder="Rating (1-5)" value={rating} onChange={(e) => setRating(e.target.value)} min="1" max="5" />
-        <br />
-        <button type="submit">Add Destination</button>
-      </form>
+        <form onSubmit={addDestination}>
+          <input
+            type="text"
+            placeholder="Destination name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Country"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Notes"
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Rating (1-5)"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+            min="1"
+            max="5"
+          />
+          <button type="submit">Add Destination</button>
+        </form>
+      </div>
 
       <h3>My Destinations</h3>
       <div>
         {destinations.map((dest) => (
-          <div key={dest.id}>
+          <div key={dest.id} className={`destination-card ${dest.visited ? 'visited' : 'not-visited'}`}>
             <h4>{dest.name} - {dest.country}</h4>
             <p>{dest.notes}</p>
             <p>Rating: {dest.rating}/5</p>
             <p>Status: {dest.visited ? 'Visited' : 'Not Visited'}</p>
-            <button onClick={() => markVisited(dest)}>
+            <button className="btn-success" onClick={() => markVisited(dest)}>
               {dest.visited ? 'Mark Unvisited' : 'Mark Visited'}
             </button>
-            <button onClick={() => deleteDestination(dest.id)}>Delete</button>
+            <button className="btn-danger" onClick={() => deleteDestination(dest.id)}>Delete</button>
           </div>
         ))}
       </div>

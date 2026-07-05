@@ -19,41 +19,40 @@ function Register() {
       });
       navigate('/');
     } catch (err) {
-      setError('Error registering. Try again.');
+      setError(err.response?.data?.message || 'Error registering. Try again.');
     }
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '100px auto', padding: '20px' }}>
-      <h2>Register</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="container">
+      <h2>Travel Bucket List</h2>
+      <h3>Register</h3>
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleRegister}>
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          style={{ display: 'block', width: '100%', marginBottom: '10px', padding: '8px' }}
         />
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          style={{ display: 'block', width: '100%', marginBottom: '10px', padding: '8px' }}
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          style={{ display: 'block', width: '100%', marginBottom: '10px', padding: '8px' }}
         />
-        <button type="submit" style={{ padding: '10px 20px' }}>Register</button>
+        <button type="submit">Register</button>
       </form>
-      <p>Already have an account? <a href="/">Login</a></p>
+      <p style={{marginTop: '15px'}}>Already have an account? <a href="/">Login</a></p>
     </div>
   );
 }
 
 export default Register;
+   
