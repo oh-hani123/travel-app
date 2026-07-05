@@ -1,0 +1,7 @@
+[33mb8fd5f8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Improve UI styling for login, register and dashboard
+[33m8dfb911[m Add input validation and user profile endpoint
+[33m06c6748[m Add README and database schema DDL file
+[33mb983cc8[m Add React frontend with login, register and dashboard
+[33m0688899[m Fix gitignore remove node_modules and env
+[33m48eb7b3[m Add gitignore and remove sensitive files
+[33m8c8d33f[m Initial backend setup with auth and destinations API

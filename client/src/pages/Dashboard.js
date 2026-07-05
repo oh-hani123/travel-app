@@ -8,6 +8,7 @@ function Dashboard() {
   const [country, setCountry] = useState('');
   const [notes, setNotes] = useState('');
   const [rating, setRating] = useState('');
+  const [search, setSearch] = useState('');
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
 
@@ -32,6 +33,14 @@ function Dashboard() {
 
   const addDestination = async (e) => {
     e.preventDefault();
+    if (!name || !country) {
+      alert('Destination name and country are required!');
+      return;
+    }
+    if (rating < 1 || rating > 5) {
+      alert('Rating must be between 1 and 5!');
+      return;
+    }
     try {
       await axios.post(
         'http://localhost:3000/api/destinations',
@@ -77,6 +86,14 @@ function Dashboard() {
     navigate('/');
   };
 
+  const filtered = destinations.filter((d) =>
+    d.name.toLowerCase().includes(search.toLowerCase()) ||
+    d.country.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const visited = destinations.filter((d) => d.visited).length;
+  const notVisited = destinations.length - visited;
+
   return (
     <div className="dashboard">
       <div className="header">
@@ -84,42 +101,26 @@ function Dashboard() {
         <button onClick={handleLogout} className="btn-danger">Logout</button>
       </div>
 
+      <div className="container" style={{margin: '0 0 20px 0', maxWidth: '100%'}}>
+        <p>Total: {destinations.length} | Visited: {visited} | Not Visited: {notVisited}</p>
+      </div>
+
       <div className="container" style={{margin: '0 0 30px 0', maxWidth: '100%'}}>
         <h3>Add New Destination</h3>
         <form onSubmit={addDestination}>
-          <input
-            type="text"
-            placeholder="Destination name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Notes"
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Rating (1-5)"
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-            min="1"
-            max="5"
-          />
+          <input type="text" placeholder="Destination name" value={name} onChange={(e) => setName(e.target.value)} />
+          <input type="text" placeholder="Country" value={country} onChange={(e) => setCountry(e.target.value)} />
+          <input type="text" placeholder="Notes" value={notes} onChange={(e) => setNotes(e.target.value)} />
+          <input type="number" placeholder="Rating (1-5)" value={rating} onChange={(e) => setRating(e.target.value)} min="1" max="5" />
           <button type="submit">Add Destination</button>
         </form>
       </div>
 
+      <input type="text" placeholder="Search destinations..." value={search} onChange={(e) => setSearch(e.target.value)} />
+
       <h3>My Destinations</h3>
       <div>
-        {destinations.map((dest) => (
+        {filtered.map((dest) => (
           <div key={dest.id} className={`destination-card ${dest.visited ? 'visited' : 'not-visited'}`}>
             <h4>{dest.name} - {dest.country}</h4>
             <p>{dest.notes}</p>
