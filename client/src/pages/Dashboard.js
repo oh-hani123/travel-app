@@ -93,8 +93,10 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <div className="header">
-        <h2>My Travel Bucket List</h2>
-        <button onClick={handleLogout} className="btn-danger">Logout</button>
+        <h2>Travel Bucket List</h2>
+        <div>
+          <button onClick={handleLogout} className="btn-danger">Logout</button>
+        </div>
       </div>
 
       <div className="stats">

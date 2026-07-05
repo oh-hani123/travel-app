@@ -25,14 +25,12 @@ function Login() {
   return (
     <div style={{
       minHeight: '100vh',
-      backgroundImage: 'url(https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1600)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center'
     }}>
-      <div className="container" style={{margin: '0'}}>
+      <div className="container">
         <h2>✈️ Travel Bucket List</h2>
         <h3>Login</h3>
         {error && <p className="error">{error}</p>}
@@ -42,6 +40,7 @@ function Login() {
           <button type="submit" style={{width: '100%'}}>Login</button>
         </form>
         <p style={{marginTop: '15px', textAlign: 'center'}}>Don't have an account? <a href="/register">Register</a></p>
+        <p style={{marginTop: '10px', textAlign: 'center'}}><a href="/about">About Us</a></p>
       </div>
     </div>
   );
