@@ -23,26 +23,26 @@ function Login() {
   };
 
   return (
-    <div className="container">
-      <h2>Travel Bucket List</h2>
-      <h3>Login</h3>
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
-      <p style={{marginTop: '15px'}}>Don't have an account? <a href="/register">Register</a></p>
+    <div style={{
+      minHeight: '100vh',
+      backgroundImage: 'url(https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1600)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      <div className="container" style={{margin: '0'}}>
+        <h2>✈️ Travel Bucket List</h2>
+        <h3>Login</h3>
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={handleLogin}>
+          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <button type="submit" style={{width: '100%'}}>Login</button>
+        </form>
+        <p style={{marginTop: '15px', textAlign: 'center'}}>Don't have an account? <a href="/register">Register</a></p>
+      </div>
     </div>
   );
 }

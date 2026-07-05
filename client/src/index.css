@@ -5,8 +5,9 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f4f8;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
   color: #333;
 }
 
@@ -16,29 +17,37 @@ h2, h3, h4 {
 
 input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   font-size: 14px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102,126,234,0.2);
 }
 
 button {
-  padding: 10px 20px;
-  background-color: #4a90e2;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: bold;
 }
 
 button:hover {
-  background-color: #357abd;
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 a {
-  color: #4a90e2;
+  color: #667eea;
   text-decoration: none;
 }
 
@@ -47,16 +56,30 @@ a:hover {
 }
 
 .container {
-  max-width: 500px;
+  max-width: 460px;
   margin: 80px auto;
   background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.container h2 {
+  text-align: center;
+  color: #667eea;
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.container h3 {
+  text-align: center;
+  color: #888;
+  font-weight: normal;
+  margin-bottom: 25px;
 }
 
 .dashboard {
-  max-width: 800px;
+  max-width: 860px;
   margin: 40px auto;
   padding: 20px;
 }
@@ -65,8 +88,13 @@ a:hover {
   background: white;
   padding: 20px;
   margin-bottom: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.destination-card:hover {
+  transform: translateY(-2px);
 }
 
 .visited {
@@ -78,20 +106,12 @@ a:hover {
 }
 
 .btn-danger {
-  background-color: #e74c3c;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
   margin-left: 10px;
 }
 
-.btn-danger:hover {
-  background-color: #c0392b;
-}
-
 .btn-success {
-  background-color: #27ae60;
-}
-
-.btn-success:hover {
-  background-color: #219a52;
+  background: linear-gradient(135deg, #27ae60, #219a52);
 }
 
 .header {
@@ -99,9 +119,62 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.header h2 {
+  color: #667eea;
+  font-size: 24px;
 }
 
 .error {
   color: #e74c3c;
   margin-bottom: 10px;
+  text-align: center;
+}
+
+.stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.stat-box {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.stat-box h3 {
+  font-size: 32px;
+  color: #667eea;
+  margin-bottom: 5px;
+}
+
+.stat-box p {
+  color: #888;
+  font-size: 14px;
+}
+
+.add-form {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+}
+
+.search-box {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
 }

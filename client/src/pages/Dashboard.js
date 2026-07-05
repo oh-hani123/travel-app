@@ -37,10 +37,6 @@ function Dashboard() {
       alert('Destination name and country are required!');
       return;
     }
-    if (rating < 1 || rating > 5) {
-      alert('Rating must be between 1 and 5!');
-      return;
-    }
     try {
       await axios.post(
         'http://localhost:3000/api/destinations',
@@ -101,31 +97,42 @@ function Dashboard() {
         <button onClick={handleLogout} className="btn-danger">Logout</button>
       </div>
 
-      <div className="container" style={{margin: '0 0 20px 0', maxWidth: '100%'}}>
-        <p>Total: {destinations.length} | Visited: {visited} | Not Visited: {notVisited}</p>
+      <div className="stats">
+        <div className="stat-box">
+          <h3>{destinations.length}</h3>
+          <p>Total Destinations</p>
+        </div>
+        <div className="stat-box">
+          <h3>{visited}</h3>
+          <p>Visited</p>
+        </div>
+        <div className="stat-box">
+          <h3>{notVisited}</h3>
+          <p>Not Visited</p>
+        </div>
       </div>
 
-      <div className="container" style={{margin: '0 0 30px 0', maxWidth: '100%'}}>
+      <div className="add-form">
         <h3>Add New Destination</h3>
         <form onSubmit={addDestination}>
           <input type="text" placeholder="Destination name" value={name} onChange={(e) => setName(e.target.value)} />
           <input type="text" placeholder="Country" value={country} onChange={(e) => setCountry(e.target.value)} />
           <input type="text" placeholder="Notes" value={notes} onChange={(e) => setNotes(e.target.value)} />
           <input type="number" placeholder="Rating (1-5)" value={rating} onChange={(e) => setRating(e.target.value)} min="1" max="5" />
-          <button type="submit">Add Destination</button>
+          <button type="submit" style={{marginTop: '12px'}}>Add Destination</button>
         </form>
       </div>
 
-      <input type="text" placeholder="Search destinations..." value={search} onChange={(e) => setSearch(e.target.value)} />
+      <input className="search-box" type="text" placeholder="Search destinations..." value={search} onChange={(e) => setSearch(e.target.value)} />
 
-      <h3>My Destinations</h3>
+      <h3 style={{color: 'white', marginBottom: '15px'}}>My Destinations</h3>
       <div>
         {filtered.map((dest) => (
           <div key={dest.id} className={`destination-card ${dest.visited ? 'visited' : 'not-visited'}`}>
             <h4>{dest.name} - {dest.country}</h4>
-            <p>{dest.notes}</p>
+            <p style={{color: '#666', margin: '8px 0'}}>{dest.notes}</p>
             <p>Rating: {dest.rating}/5</p>
-            <p>Status: {dest.visited ? 'Visited' : 'Not Visited'}</p>
+            <p style={{margin: '8px 0'}}>Status: {dest.visited ? 'Visited' : 'Not Visited'}</p>
             <button className="btn-success" onClick={() => markVisited(dest)}>
               {dest.visited ? 'Mark Unvisited' : 'Mark Visited'}
             </button>
